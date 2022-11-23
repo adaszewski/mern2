@@ -1,0 +1,31 @@
+ <form style="width:50%" method="POST" action="/contact/add">
+     <h2> Zarejestruj nowe działanie</h2>
+ <input type="text" name="id_klienta" value="{{clients._id}}" /> <br/>
+ <input type="date" name="data_kontaktu" /><br/>
+ <input type="text" name="forma_kontaktu" /><br/>
+ <textarea name="notatka"></textarea><br/>
+  <input type="date" name="data_nastepnego_kontaktu" /><br/>
+
+<button>Zapisz</button><br />
+</form>     
+
+<h1> Zdarzenia dla klienta  </h1>
+  <table style="width:90%">
+<tr>
+    <th style="width: 10%">data_kontaktu</th>
+    <th style="width: 10%">forma_kontaktu</th>
+    <th style="width: 20%">notatka</th>
+    <th style="width: 10%">data_nastepnego_kontaktu</th>
+    <th style="width: 15%">opcje</th>
+
+</tr>
+     
+   {{#each contact}}
+    <td>{{data_kontaktu}} </td>
+    <td> {{forma_kontaktu}}</td> 
+    <td>{{notatka}} <br>
+    <td>{{data_nastepnego_kontaktu}}</td>
+    <td> <a href="/contact/{{_id}}"> modyfikuj </a>
+    <a href="/contact/del/{{_id}}"> usuń  </a> </td>
+</tr>
+      {{/each}}
