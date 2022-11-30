@@ -1,20 +1,3 @@
-     <form style="width:50%" method="POST" action="/client/add">
-     <h2> Wpisz nowego klienta</h2>
-
-
-    <label>nazwa firmy</label><input type="text" name="nazwa_firmy" placeholder="nazwa firmy" /><br>
-    <label>NIP</label> <input type="number" name="nip" placeholder="numer identyfikacji podatkowej- 10 cyfr" /><br/>
-    ADRES<br/>
-    <label>kod pocztowy</label> <input type="text" size="8px"  name="kod_pocztowy" placeholder="kod pocztowy" /></label>
-    <label>miasto</label> <input type="text" size="8px"  name="miasto" placeholder="miasto" /><br/>
-    <label>ulica</label> <input type="text" name="ulica" placeholder="ulica" />
-    <label>numer domu</label> <input type="text" size="3px" name="nr_domu" placeholder="numer domu" />
-    <label>numer lokalu</label> <input type="text" size="3px" name="nr_lokalu" placeholder="numer lokalu" /><br/>
-    <label>adres_email</label> <input type="email" name="adres_email" placeholder="adres e-mail" /><br/>
-    <label>numer telefonu</label> <input type="text" name="nr_telefonu" placeholder="numer telefonu(tylko liczby, bez spacji" /><br/>
-
-    <button>Zapisz nowego klienta</button><br />
-</form>     
 
 
 <h1> Klienci firmy </h1>
@@ -23,7 +6,8 @@
     <th style="width: 10%">nazwa</th>
     <th style="width: 10%">nip</th>
     <th style="width: 20%">dane adresowe</th>
-    <th style="width: 10%">liczba kontaktów</th>
+    <th style="width: 10%">opiekun Klienta</th>
+    <th style="width: 10%">zdarzenia</th>
     <th style="width: 15%">opcje</th>
     <th style="width: 15%">zdarzenia</th>
 </tr>
@@ -33,14 +17,17 @@
    {{#each client}}
     <td>{{nazwa_firmy}} </td>
     <td> {{nip}}</td> 
-    <td>{{kod_pocztowy}} {{miasto}} <br>
-    ul. {{ulica}} {{nr_domu}} /  {{nr_lokalu}}<br>
-    adres e-mail: {{adres_email}} <br>
-    nr telefonu: {{nr_telefonu}}</td>
-    <td>{{liczba_kontaktow}}</td>
-    <td> <a href="/client/{{_id}}"> modyfikuj </a>
+    <td>{{adres.kod_pocztowy}} {{adres.miasto}} <br>
+    ul. {{adres.ulica}} {{adres.nr_domu}} /  {{adres.nr_lokalu}}<br>
+    adres e-mail: {{adres.adres_email}} <br>
+    nr telefonu: {{adres.nr_telefonu}}</td>
+    <td>{{opiekun}}</td>
+     <td> {{#each contacts}}
+        <td> {{forma_kontaktu}}{{data_kontaktu}}{{notatka}}  {{/each}}
+   </td>
+   <td> <a href="/client/{{_id}}"> modyfikuj </a>
     <a href="/client/del/{{_id}}"> usuń  </a> </td>
-    <td> <a href="/contact"> dodaj zdarzenie </a><br/>
+    <td> <a href="/contact/add/{{_id}}"> dodaj zdarzenie </a><br/>
      </td>
         </tr>
       {{/each}}

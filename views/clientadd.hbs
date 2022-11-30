@@ -1,0 +1,17 @@
+     <form style="width:50%" method="POST" action="/client/add">
+     <h2> Wpisz nowego klienta</h2>
+
+
+    <label>nazwa firmy</label><input type="text" name="nazwa_firmy" placeholder="nazwa firmy" /><br>
+    <label>NIP</label> <input type="number" name="nip" placeholder="numer identyfikacji podatkowej- 10 cyfr" /><br/>
+    ADRES<br/>
+    <label>kod pocztowy</label> <input type="text" size="8px"  name="adres.kod_pocztowy" placeholder="kod pocztowy" /></label>
+    <label>miasto</label> <input type="text" size="8px"  name="adres.miasto" placeholder="miasto" /><br/>
+    <label>ulica</label> <input type="text" name="adres.ulica" placeholder="ulica" />
+    <label>numer domu</label> <input type="text" size="3px" name="adres.nr_domu" placeholder="numer domu" />
+    <label>numer lokalu</label> <input type="text" size="3px" name="adres.nr_lokalu" placeholder="numer lokalu" /><br/>
+    <label>adres_email</label> <input type="email" name="adres.adres_email" placeholder="adres e-mail" /><br/>
+    <label>numer telefonu</label> <input type="text" name="adres.nr_telefonu" placeholder="numer telefonu(tylko liczby, bez spacji" /><br/>
+    <label>opiekun Klienta</label><input type="text" name="opiekun" placeholder="opiekun Klienta" /><br>
+    <button>Zapisz nowego klienta</button><br />
+</form>   

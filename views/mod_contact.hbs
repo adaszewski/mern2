@@ -1,10 +1,10 @@
  <form style="width:50%" method="POST" action="/contact/update/{{_id}}">
      <h2> Skoryguj działanie</h2>
- <input type="text" name="id_klienta" value="{{id_klienta}}" disabled="true" /> <br/>
- <input type="date" name="data_kontaktu"  value="{{data_kontaktu}}" select="true" /><br/>
+ <input type="text" name="id_klienta" value="{{client._id}}">{{client._id}} </input> <br/>
+ <input type="date" name="data_kontaktu" value="{{dateFormat data_kontaktu "YYYY-MM-DD"}}"> </input> <br/>
  <input type="text" name="forma_kontaktu" value="{{forma_kontaktu}}" /><br/>
- <textarea name="notatka" name="notatka" name="{{notatka}}">  </textarea><br/>
-  <input type="date" name="data_nastepnego_kontaktu" value="{{data_nastepnego_kontaktu}}"/><br/>
+ <textarea name="notatka" textareaObject.value="{{notatka}}">{{notatka}}  </textarea><br/>
+  <input type="date" name="data_nastepnego_kontaktu" value="{{dateFormat data_nastepnego_kontaktu "YYYY-MM-DD"}}"/><br/>
 
 <button>Zapisz</button><br />
 </form> 

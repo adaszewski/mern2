@@ -3,6 +3,7 @@ const moment = require("moment");
 
 function clientTable(cb) {
   Client.find()
+    .populate("contacts")
     .lean()
     .exec(function (err, clients) {
       if (err) {
@@ -14,18 +15,19 @@ function clientTable(cb) {
 }
 
 function clientGet(_id, cb) {
-  Client.findById(_id).exec(function (err, client) {
-    if (err) {
-      cb(err);
-    } else {
-      cb(null, client);
-    }
-  });
+  Client.findById(_id)
+    .populate("contacts")
+    .exec(function (err, client) {
+      if (err) {
+        cb(err);
+      } else {
+        cb(null, client);
+      }
+    });
 }
 
 function clientAdd(data, cb) {
   let newClient = new Client(data);
-
   newClient.save(function (err, client) {
     if (err) {
       cb(err);
