@@ -56,23 +56,23 @@ function userDelete(id, cb) {
 }
 
 function loginUser(data, cb) {
-  Users.findOne({ username: data.username }).exec(function (err, user) {
+  Users.findOne({ username: data.username }).exec(function (err, users) {
     if (err) {
       cb(err);
       return;
     }
 
-    if (!user) {
-      cb(null, user);
+    if (!users) {
+      cb(null, users);
       return;
     }
 
-    bcrypt.compare(data.password, user.password, function (err, logged) {
+    bcrypt.compare(data.password, users.password, function (err, logged) {
       if (err) {
         cb(err);
       }
       if (logged) {
-        const token = users.generateAuthToken();
+        const token = Users.generateAuthToken();
         cb(null, token);
       } else {
         cb(null, null);

@@ -3,6 +3,7 @@ const uniqueValidator = require("mongoose-unique-validator");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
+
 mongoose.connect("mongodb://localhost:27017/mern2", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -11,7 +12,7 @@ mongoose.connect("mongodb://localhost:27017/mern2", {
 const Users = mongoose.Schema({
   username: {type: String, require: true,  unique: true},
   password: { type: String, required: true },
-  role: { type: String, required: true },
+  role: { type: String, enum: ["administrator", "opiekun", "kierownik", "klient" ], required: true },
 });
 
 Users.plugin(uniqueValidator);
@@ -33,12 +34,13 @@ Users.pre("save", function (next) {
   });
 });
 
-Users.methods.generateAuthToken = function () {
-  const token = jwt.sign({ _id: this._id }, process.env.JWT_PRIVATE_KEY, {
+Users.methods.generateAuthToken = function(){
+    const token = jwt.sign({ _id: this._id }, process.env.JWT_PRIVATE_KEY, {
     expiresIn: "1h",
   });
   return token;
 };
+
 
 
 

@@ -1,6 +1,7 @@
+require('dotenv').config()
 const express = require("express");
 const app = express();
-const port = 5000;
+const port = (process.env.PORT || 6000);
 const hbs = require("express-handlebars");
 const cors = require("cors");
 const client = require("./app/controllers/client.controller");
@@ -18,11 +19,13 @@ app.use(express.json());
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
-app.use("/client", auth, clientRouter);
-app.use("/contact", auth, contactRouter);
+
+
+app.use("/client",  clientRouter);
+app.use("/contact",  contactRouter);
 app.use("/users", usersRouter);
-app.use("/api/client", auth, clientApiRouter);
-app.use("/api/contact", auth, contactApiRouter);
+app.use("/api/client", clientApiRouter);
+app.use("/api/contact", contactApiRouter);
 app.use("/api/users", usersApiRouter);
 
 
@@ -45,6 +48,9 @@ app.get("/login", (req, res) => {
   res.render("login")
 })
 
+app.get("/useradd", (req, res) => {
+  res.render("useradd")
+})
 app.get("/", (req, res) => {
   res.render("home", {
     title: "Zarządzaj klientami i kontaktami",
@@ -52,7 +58,8 @@ app.get("/", (req, res) => {
     content2: "http://localhost:5000/clientadd", 
     content3: "http://localhost:5000/contact",
     content4: "http://localhost:5000/users",
-    content5: "http://localhost:5000/login"
+    content5: "http://localhost:5000/login",
+    content6: "http://localhost:5000/useradd"
    });
 });
 

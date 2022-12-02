@@ -46,7 +46,7 @@ router.put("/update/:id", function (req, res) {
 });
 
 router.post("/login", function (req, res) {
-  user.login(req.body, function (err, token) {
+  users.login(req.body, function (err, token) {
     if (err) {
       res.status(404);
       res.json({

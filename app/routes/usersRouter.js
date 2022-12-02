@@ -21,7 +21,7 @@ router.get("", function (req, res) {
   router.post("/add", function (req, res) {
     users.add(req.body, function (err) {
       if (err) res.send(err);
-      res.redirect("/users");
+      res.redirect("/");
     });
   });
   

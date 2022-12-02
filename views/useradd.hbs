@@ -1,9 +1,16 @@
 
  <form style="width:50%" method="POST" action="/users/add">
      <h2> Zarejestruj nowego użytkownika</h2>
- <input type="text" name="username"  /> <br/>
- <input type="password" name="password" /><br/>
- <input type="text" name="role" /><br/>
+ <label> nazwa użytkownika</label><input type="text" name="username"  /> <br/>
+<label>hasło</label> <input type="password" name="password" /><br/>
+<label>rola  w organizacji</label> 
+
+<select type="text" name="role">
+   <option> administrator</option>
+   <option>opiekun</option>
+   <option>kierownik </option>
+   <option>klient</option> 
+   </select><br/>
 
 <button>Zapisz</button><br />
 </form> 
