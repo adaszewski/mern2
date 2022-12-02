@@ -40,26 +40,21 @@ app.engine(
     },
   })
 );
-app.get("/clientadd", (req, res) => {
-  res.render("clientadd")
-})
 
 app.get("/login", (req, res) => {
   res.render("login")
 })
 
-app.get("/useradd", (req, res) => {
-  res.render("useradd")
-})
+
 app.get("/", (req, res) => {
   res.render("home", {
     title: "Zarządzaj klientami i kontaktami",
     content1: "http://localhost:5000/client", 
-    content2: "http://localhost:5000/clientadd", 
+    content2: "http://localhost:5000/client/add", 
     content3: "http://localhost:5000/contact",
     content4: "http://localhost:5000/users",
     content5: "http://localhost:5000/login",
-    content6: "http://localhost:5000/useradd"
+    content6: "http://localhost:5000/users/add"
    });
 });
 

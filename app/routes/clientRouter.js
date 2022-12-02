@@ -10,6 +10,10 @@ router.get("", function (req, res) {
       res.render("client", { client });
     });
   });
+
+  router.get("/add", (req, res) => {
+    res.render("clientadd")
+  })
   
   router.get("/:_id", function (req, res) {
     client.get(req.params._id, function (err, client) {
