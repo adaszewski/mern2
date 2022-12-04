@@ -35,7 +35,7 @@
   <td> {{forma_kontaktu}}</td> 
   <td>{{notatka}} </td>
   <td> {{client.nazwa_firmy}} </td>
-  <td>{{dateFormat data_nastepnego_kontaktu "YYYY-MM-DD"}}</td>
+  <td>{{#if data_nastepnego_kontaktu}}{{dateFormat data_nastepnego_kontaktu "YYYY-MM-DD"}}{{/if}}</td>
   <td> <a href="/contact/{{_id}}"> modyfikuj </a>
   <a href="/contact/del/{{_id}}"> usuń  </a> </td>
 </tr>
