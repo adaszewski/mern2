@@ -3,6 +3,8 @@ const express = require("express");
 const app = express();
 const port = (process.env.PORT || 6000);
 const hbs = require("express-handlebars");
+const handlebars=require("handlebars")
+
 const cors = require("cors");
 const client = require("./app/controllers/client.controller");
 const contact= require("./app/controllers/contact.controller")
@@ -30,14 +32,21 @@ app.use("/api/users", usersApiRouter);
 
 
 app.set("view engine", "hbs");
+
 app.engine(
   "hbs",
   hbs.engine({
     defaultLayout: "main",
     extname: ".hbs",
+    list: handlebars.registerHelper("list", function(items, options) {
+  const itemsAsHtml = items.map(item => "<li>" + options.fn(item) + "</li>");
+  return "<ul>\n" + itemsAsHtml.join("\n") + "\n</ul>";
+}),
     helpers: {
       dateFormat: require("handlebars-dateformat"),
+
     },
+    
   })
 );
 

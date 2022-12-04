@@ -1,15 +1,15 @@
 
 
 <h1> Klienci firmy </h1>
-  <table style="width:90%">
+  <table style="width:95%">
 <tr>
     <th style="width: 10%">nazwa</th>
     <th style="width: 10%">nip</th>
     <th style="width: 20%">dane adresowe</th>
     <th style="width: 10%">opiekun Klienta</th>
+    <th style="width: 30%">zdarzenia</th>
+    <th style="width: 10%">opcje</th>
     <th style="width: 10%">zdarzenia</th>
-    <th style="width: 15%">opcje</th>
-    <th style="width: 15%">zdarzenia</th>
 </tr>
     
   
@@ -22,8 +22,8 @@
     adres e-mail: {{adres.adres_email}} <br>
     nr telefonu: {{adres.nr_telefonu}}</td>
     <td>{{opiekun}}</td>
-     <td> {{#each contacts}}
-        <td> {{forma_kontaktu}}{{data_kontaktu}}{{notatka}}  {{/each}}
+     <td> 
+{{#list contacts}} w dniu{{dateFormat data_kontaktu "YYYY-MM-DD"}} forma:  {{forma_kontaktu}}  notatka: {{notatka}}  {{/list}}
    </td>
    <td> <a href="/client/{{_id}}"> modyfikuj </a>
     <a href="/client/del/{{_id}}"> usuń  </a> </td>
