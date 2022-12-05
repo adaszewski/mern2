@@ -1,6 +1,19 @@
 
 
 <h1> Klienci firmy </h1>
+
+     <form style="width:50%" method="GET" action="/client/nip/{{nip}}">
+     <h4> Wyszukaj klienta</h4>
+
+
+    
+    <label>NIP</label> <input type="text" name="nip" placeholder="numer identyfikacji podatkowej- 10 cyfr" /><br/>
+    <br/>
+    
+    <button>Znajdź</button><br />
+</form>  
+
+
   <table style="width:95%">
 <tr>
     <th style="width: 10%">nazwa</th>
@@ -23,7 +36,7 @@
     nr telefonu: {{adres.nr_telefonu}}</td>
     <td>{{opiekun}}</td>
      <td> 
-{{#list contacts}} w dniu{{dateFormat data_kontaktu "YYYY-MM-DD"}} forma:  {{forma_kontaktu}}  notatka: {{notatka}}  {{/list}}
+{{#each contacts}} w dniu{{dateFormat data_kontaktu "YYYY-MM-DD"}} forma:  {{forma_kontaktu}}  notatka: {{notatka}}<br>  {{/each}}
    </td>
    <td> <a href="/client/{{_id}}"> modyfikuj </a>
     <a href="/client/del/{{_id}}"> usuń  </a> </td>

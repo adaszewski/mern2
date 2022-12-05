@@ -7,7 +7,7 @@ mongoose.connect("mongodb://localhost:27017/mern2", {
 
 const schema = new mongoose.Schema({
   nazwa_firmy: {type: String, require: true},
-  nip: { type: String, required: false },
+  nip: { type: String, required: false, unique: true },
   contacts: [
     {
       type: mongoose.Schema.Types.ObjectId,

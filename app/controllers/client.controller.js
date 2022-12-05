@@ -14,9 +14,36 @@ function clientTable(cb) {
     });
 }
 
+function clientGetNip(nip, cb) {
+  Client.findOne({nip: nip})
+    .populate("contacts")
+    .lean()
+    .exec(function (err, client) {
+      if (err) {
+        cb(err);
+      } else {
+        cb(null, client);
+      }
+    });
+}
+
+function clientGetMiasto(miasto, cb) {
+  Client.findOne({miasto: miasto})
+    .populate("contacts")
+    .lean()
+    .exec(function (err, client) {
+      if (err) {
+        cb(err);
+      } else {
+        cb(null, client);
+      }
+    });
+}
+
 function clientGet(_id, cb) {
   Client.findById(_id)
     .populate("contacts")
+    .lean()
     .exec(function (err, client) {
       if (err) {
         cb(err);
@@ -60,6 +87,7 @@ function clientDelete(id, cb) {
 module.exports = {
   list: clientTable,
   get: clientGet,
+  getnip: clientGetNip,
   add: clientAdd,
   update: clientUpdate,
   delete: clientDelete,

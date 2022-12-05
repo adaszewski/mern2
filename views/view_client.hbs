@@ -1,0 +1,38 @@
+     <h2> Dane klienta</h2>
+
+
+    <p>nazwa firmy<h3>{{nazwa_firmy}}</h3></p> 
+
+    <p>NIP {{nip}} </p>
+    <p> adres:{{adres.kod_pocztowy}} {{adres.miasto}} </p>
+    <p> ul. {{adres.ulica}} {{adres.nr_domu}}/{{adres.nr_lokalu}}</p>
+    <p> adres e-mail {{adres.adres_email}}</p>
+    <p> numer telefonu {{adres.nr_telefonu}}</p> 
+<button> <a href="/client/{{_id}}"> modyfikuj </a></button>
+
+
+
+
+    <h4> Ostatnie kontakty z klientem</h4>
+    {{!-- <table style="width:70%">
+<tr>
+    <th style="width: 20%">data</th>
+    <th style="width: 10%">forma kontaktu</th>
+    <th style="width: 50%">notatka</th>
+    <th style="width: 20%">data następnego kontaktu</th>
+ </tr> --}}
+  
+    
+   
+{{#each contacts}} w dniu{{dateFormat data_kontaktu "YYYY-MM-DD"}} forma:  {{forma_kontaktu}}  notatka: {{notatka}} <br> {{/each}}
+
+
+{{!-- 
+<td>{{dateFormat data_kontaktu "YYYY-MM-DD"}} </td>
+<td> {{forma_kontaktu}}</td>
+<td> {{notatka}} </td>
+<td>{{dateFormat data_kontaktu "YYYY-MM-DD"}} </td>
+ --}}
+
+
+<button><a href="/contact/add/{{_id}}"> dodaj zdarzenie </a> </button>

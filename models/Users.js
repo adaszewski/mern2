@@ -10,7 +10,7 @@ mongoose.connect("mongodb://localhost:27017/mern2", {
 });
 
 const Users = mongoose.Schema({
-  username: {type: String, require: true,  unique: true},
+  username: {type: String, required: true,  unique: true},
   password: { type: String, required: true },
   role: { type: String, enum: ["administrator", "opiekun", "kierownik", "klient" ], required: true },
 });
