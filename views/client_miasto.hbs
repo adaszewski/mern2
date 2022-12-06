@@ -1,15 +1,4 @@
-
-
-<h1> Klienci firmy </h1>
-
-     <form style="width:50%" method="GET" action="/client/nip/{{nip}}">
-     <h4> Wyszukaj klienta</h4>
-  <label>nip</label><input name="nip"/> <button> Znajdź </button>
-  </form>
-  <form style="width:50%" method="GET" action="/client/miasto/{{miasto}}">
-     <label> miasto </label><input name="miasto"/> <button> Znajdź </button><br />
-</form>  
-
+Lista klientów z miasta: {{miasto}}  
 
   <table style="width:95%">
 <tr>
@@ -21,13 +10,11 @@
     <th style="width: 10%">opcje</th>
     <th style="width: 10%">zdarzenia</th>
 </tr>
-    
   
-  
-   {{#each client}}
+  {{#each client}}
     <td>{{nazwa_firmy}} </td>
     <td> {{nip}}</td> 
-    <td>{{adres.kod_pocztowy}} {{adres.miasto}} <br>
+    <td>{{adres.kod_pocztowy}} {{miasto}} <br>
     ul. {{adres.ulica}} {{adres.nr_domu}} /  {{adres.nr_lokalu}}<br>
     adres e-mail: {{adres.adres_email}} <br>
     nr telefonu: {{adres.nr_telefonu}}</td>

@@ -28,15 +28,16 @@ function clientGetNip(nip, cb) {
 }
 
 function clientGetMiasto(miasto, cb) {
-  Client.findOne({miasto: miasto})
+  Client.find({miasto: miasto})
     .populate("contacts")
-    .lean()
+    .lean(miasto)
     .exec(function (err, client) {
       if (err) {
         cb(err);
       } else {
         cb(null, client);
       }
+      // console.log(client)
     });
 }
 
@@ -88,6 +89,7 @@ module.exports = {
   list: clientTable,
   get: clientGet,
   getnip: clientGetNip,
+  getmiasto: clientGetMiasto,
   add: clientAdd,
   update: clientUpdate,
   delete: clientDelete,

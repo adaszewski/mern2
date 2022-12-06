@@ -17,19 +17,20 @@ router.get("", function (req, res) {
   
 
   router.get("/nip/", function (req, res) {
-    console.log(req.query.nip)
+    // console.log(req.query.nip)
     client.getnip(req.query.nip, function (err, client) {
       if (err) res.send(err);
       res.render("view_client", client);
-      console.log(client)
+      // console.log(client)
     });
   });
 
   router.get("/miasto/", function (req, res) {
+
     console.log(req.query.miasto)
     client.getmiasto(req.query.miasto, function (err, client) {
       if (err) res.send(err);
-      res.render("view_client", client);
+      res.render("client_miasto", client);
       console.log(client)
     });
   });
@@ -37,7 +38,6 @@ router.get("", function (req, res) {
   router.get("/:_id", function (req, res) {
     client.get(req.params._id, function (err, client) {
       if (err) res.send(err);
-      console.log(client);
       res.render("mod_client", client);
     });
   });
