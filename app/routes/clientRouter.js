@@ -28,10 +28,10 @@ router.get("", function (req, res) {
   router.get("/miasto/", function (req, res) {
 
     console.log(req.query.miasto)
-    client.getmiasto(req.query.miasto, function (err, client) {
+    client.getmiasto(req.query.miasto, function (err, clients) {
       if (err) res.send(err);
-      res.render("client_miasto", client);
-      console.log(client)
+      res.render("client_miasto", {clients, miasto: req.query.miasto});
+      
     });
   });
 

@@ -2,7 +2,7 @@ const Client = require("../../models/Client");
 const moment = require("moment");
 
 function clientTable(cb) {
-  Client.find()
+  Client.find( )
     .populate("contacts")
     .lean()
     .exec(function (err, clients) {
@@ -28,14 +28,14 @@ function clientGetNip(nip, cb) {
 }
 
 function clientGetMiasto(miasto, cb) {
-  Client.find({miasto: miasto})
+  Client.find({"adres.miasto": miasto})
     .populate("contacts")
-    .lean(miasto)
-    .exec(function (err, client) {
+    .lean()
+    .exec(function (err, clients) {
       if (err) {
         cb(err);
       } else {
-        cb(null, client);
+        cb(null, clients);
       }
       // console.log(client)
     });

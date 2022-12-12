@@ -4,7 +4,7 @@ const router = express.Router();
 const client = require("../controllers/client.controller");
 
 router.get("/all", function (req, res) {
-  client.list( function (err, clients) {
+  client.list(function (err, clients) {
     if (err) {
       res.status(404);
       res.json({
@@ -16,10 +16,29 @@ router.get("/all", function (req, res) {
   });
 });
 
-router.get("/:_id", function (req, res) {
-  client.list(req.params._id, function (err, client) {
-    if (err) res.send(err);
-    res.json(client);
+router.get("/nip/:nip", function (req, res) {
+  client.getnip(req.params.nip, function (err, client) {
+    if (err) {
+      res.status(404);
+      res.json({
+        error: "nie ma klienta o takim nip w bazie",
+      });
+    } else {
+      res.json(client);
+    }
+  });
+});
+
+router.get("/miasto/:miasto", function (req, res) {
+  client.getmiasto(req.params.miasto, function (err, client) {
+    if (err) {
+      res.status(404);
+      res.json({
+        error: "nie ma klienta w tym mieście",
+      });
+    } else {
+      res.json(client);
+    }
   });
 });
 

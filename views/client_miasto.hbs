@@ -11,10 +11,10 @@ Lista klientów z miasta: {{miasto}}
     <th style="width: 10%">zdarzenia</th>
 </tr>
   
-  {{#each client}}
+  {{#each clients}}
     <td>{{nazwa_firmy}} </td>
     <td> {{nip}}</td> 
-    <td>{{adres.kod_pocztowy}} {{miasto}} <br>
+    <td>{{adres.kod_pocztowy}} {{adres.miasto}} <br>
     ul. {{adres.ulica}} {{adres.nr_domu}} /  {{adres.nr_lokalu}}<br>
     adres e-mail: {{adres.adres_email}} <br>
     nr telefonu: {{adres.nr_telefonu}}</td>
