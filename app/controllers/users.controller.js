@@ -73,7 +73,7 @@ function loginUser(data, cb) {
       }
       if (logged) {
         const token = user.generateAuthToken();
-        cb(null, token);
+        cb(null, {token, user: user.username});
       } else {
         cb(null, null);
       }

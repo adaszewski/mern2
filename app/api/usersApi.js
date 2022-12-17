@@ -46,14 +46,15 @@ router.put("/update/:id", function (req, res) {
 });
 
 router.post("/login", function (req, res) {
-  users.login(req.body, function (err, token) {
+  users.login(req.body, function (err, loggedUser) {
+    console.log(req.body)
     if (err) {
       res.status(404);
       res.json({
         error: "użytkownik nie został zalogowany",
       });
-    } else if (token) {
-      res.json({ success: true, jwt: token });
+    } else if (loggedUser.token) {
+      res.json({ success: true,user: loggedUser.user , jwt: loggedUser.token, });
     } else {
       res.json({
         success: false,

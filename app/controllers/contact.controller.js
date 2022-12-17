@@ -15,6 +15,7 @@ function contactTable(cb) {
     });
 }
 
+
 function contactAdd(clientId, data, cb) {
   let newContact = new Contact({ ...data, client: clientId });
   newContact.save(function (err, contact) {

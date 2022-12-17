@@ -42,6 +42,26 @@ router.get("/miasto/:miasto", function (req, res) {
   });
 });
 
+router.get("/:id", function (req, res) {
+  console.log(req.params.id)
+  client.get(req.params.id, function (err,  client) {
+    
+    if (err) {
+      res.status(404);
+      res.json({
+        error: "brak wydarzeń",
+        
+      });
+    } else {
+      res.json(client);
+      
+    }
+  });
+});
+
+
+
+
 router.post("/add", function (req, res) {
   client.add(req.body, function (err) {
     if (err) res.send(err);

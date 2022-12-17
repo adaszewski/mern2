@@ -16,6 +16,20 @@ router.get("/all", function (req, res) {
   });
 });
 
+router.get("/nip/:nip", function (req, res) {
+  contact.listNip( function (err, contacts) {
+    if (err) {
+      res.status(404);
+      res.json({
+        error: "brak wydarzeń",
+      });
+    } else {
+      res.json(contacts);
+    }
+  });
+});
+
+
 router.get("/:_id", function (req, res) {
   contact.list(req.params._id, function (err, contact) {
     if (err) res.send(err);

@@ -42,16 +42,14 @@ function clientGetMiasto(miasto, cb) {
 }
 
 function clientGet(_id, cb) {
-  Client.findById(_id)
+  Client.findOne({_id})
     .populate("contacts")
     .lean()
     .exec(function (err, client) {
-      if (err) {
-        cb(err);
-      } else {
-        cb(null, client);
+          cb(null, client);
+          console.log(client);
       }
-    });
+    );
 }
 
 function clientAdd(data, cb) {
