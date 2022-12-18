@@ -3,8 +3,9 @@ const uniqueValidator = require("mongoose-unique-validator");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
+mongoose.set("strictQuery", true);
 
-mongoose.connect("mongodb://localhost:27017/mern2", {
+mongoose.connect("mongodb://127.0.0.1:27017/mern2", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });

@@ -17,6 +17,8 @@ const contactApiRouter = require("./app/api/contactApi");
 const usersApiRouter=require("./app/api/usersApi");
 const auth=require("./app/middlewares/auth");
 
+
+
 app.use(express.json());
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
@@ -58,12 +60,12 @@ app.get("/login", (req, res) => {
 app.get("/", (req, res) => {
   res.render("home", {
     title: "Zarządzaj klientami i kontaktami",
-    content1: "http://localhost:5000/client", 
-    content2: "http://localhost:5000/client/add", 
-    content3: "http://localhost:5000/contact",
-    content4: "http://localhost:5000/users",
-    content5: "http://localhost:5000/login",
-    content6: "http://localhost:5000/users/add"
+    content1: "http://127.0.0.1:5000/client", 
+    content2: "http://127.0.0.1:5000/client/add", 
+    content3: "http://127.0.0.1:5000/contact",
+    content4: "http://127.0.0.1:5000/users",
+    content5: "http://127.0.0.1:5000/login",
+    content6: "http://127.0.0.1:5000/users/add"
    });
 });
 
