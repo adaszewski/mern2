@@ -14,6 +14,12 @@ const schema = new mongoose.Schema({
       ref: "Contact",
     },
   ],
+  files: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "File",
+    },
+  ],
   adres: {
       miasto: { type: String, required: true },
       kod_pocztowy: { type: String, required: true },

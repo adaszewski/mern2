@@ -4,7 +4,8 @@ const client = require("../controllers/client.controller");
 const contact = require("../controllers/contact.controller");
 
 router.get("", function (req, res) {
-  contact.list(function (err, contact) {
+  
+  contact.list( function (err, contact) {
     if (err) res.send(err);
     res.render("contact", { contact });
   });

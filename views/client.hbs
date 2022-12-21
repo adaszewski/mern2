@@ -18,8 +18,9 @@
     <th style="width: 20%">dane adresowe</th>
     <th style="width: 10%">opiekun Klienta</th>
     <th style="width: 30%">zdarzenia</th>
+    <th style="width: 10%">pliki</th>
     <th style="width: 10%">opcje</th>
-    <th style="width: 10%">zdarzenia</th>
+    
 </tr>
     
   
@@ -35,9 +36,11 @@
      <td> 
 {{#each contacts}} w dniu{{dateFormat data_kontaktu "YYYY-MM-DD"}} forma:  {{forma_kontaktu}}  notatka: {{notatka}}<br>  {{/each}}
    </td>
+  <td> {{#each files}}  {{filename}} {{desc}} {{/each}}</td>
    <td> <a href="/client/{{_id}}"> modyfikuj </a>
     <a href="/client/del/{{_id}}"> usuń  </a> </td>
-    <td> <a href="/contact/add/{{_id}}"> dodaj zdarzenie </a><br/>
+    <td> <a href="/contact/add/{{_id}}"> dodaj zdarzenie </a> <a href="/file/add/{{_id}}">  dodaj plik </a> 
+      <td> 
      </td>
         </tr>
       {{/each}}

@@ -1,10 +1,13 @@
-const Contact = require("../../models/Contact");
-const Client = require("../../models/Client");
+const Contact = require("../models/Contact");
+const Client = require("../models/Client");
+const { now } = require("mongoose");
 // const moment = require("moment");
 
-function contactTable(cb) {
+function contactTable(cb ) {
   Contact.find()
-    .populate("client")
+    .populate({path:'client'}) 
+    .sort({ 'data_kontaktu': -1 })
+
     .lean()
     .exec(function (err, contact) {
       if (err) {

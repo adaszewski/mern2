@@ -1,9 +1,12 @@
-const Client = require("../../models/Client");
+const Client = require("../models/Client");
+const File= require("../models/File")
 const moment = require("moment");
 
 function clientTable(cb) {
   Client.find( )
     .populate("contacts")
+    .populate("files")
+    .sort({nip: 1})
     .lean()
     .exec(function (err, clients) {
       if (err) {
@@ -16,7 +19,7 @@ function clientTable(cb) {
 
 function clientGetNip(nip, cb) {
   Client.findOne({nip: nip})
-    .populate("contacts")
+    .populate({path:'contacts', options: {sort: { 'data_kontaktu': 1 }}})
     .lean()
     .exec(function (err, client) {
       if (err) {
@@ -43,11 +46,12 @@ function clientGetMiasto(miasto, cb) {
 
 function clientGet(_id, cb) {
   Client.findOne({_id})
-    .populate("contacts")
+    .populate("contacts", "file")
+
     .lean()
     .exec(function (err, client) {
           cb(null, client);
-          console.log(client);
+          // console.log(client);
       }
     );
 }

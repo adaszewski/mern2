@@ -1,0 +1,30 @@
+<div> 
+    <h1>Dodaj załącznik do klienta {{{client.nazwa_firmy}}}</h1>
+</div>
+
+<hr>
+<div>
+    <form style="width:30%" form action="/file/add/{{_id}}"" method="POST" enctype="multipart/form-data">
+    
+        <div>
+            <label> Klient </label> <input type="ObjectId" name="client" value="{{_id}}" /> <br />
+        </div>
+
+        <div>
+            <label for="filename:">Nazwa pliku</label>
+            <input type="text" id="filename" placeholder="nazwa pliku" value="" name="filename" required>
+        </div>
+        <div>
+            <label for="desc">Opis pliku</label>
+            <textarea id="desc" name="desc" value="" rows="4" placeholder="Description" required>
+				</textarea>
+        </div>
+        <div>
+            <label for="file">Załącz plik</label>
+            <input type="file" id="file" name="file" value="" required>
+        </div>
+        <div>
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+</div>

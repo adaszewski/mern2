@@ -37,8 +37,8 @@ router.get("/:_id", function (req, res) {
   });
 });
 
-router.post("/add", function (req, res) {
-  contact.add(req.body, function (err) {
+router.post("/add/:id", function (req, res) {
+  contact.add(req.params.id, req.body,  function (err) {
     if (err) res.send(err);
     res.json(contact);
   });
