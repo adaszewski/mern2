@@ -19,9 +19,13 @@ function clientTable(cb) {
 
 function clientGetNip(nip, cb) {
   Client.findOne({nip: nip})
+  
     .populate({path:'contacts', options: {sort: { 'data_kontaktu': 1 }}})
+    .populate("files")
     .lean()
     .exec(function (err, client) {
+      console.log(err);
+      console.log(client);
       if (err) {
         cb(err);
       } else {

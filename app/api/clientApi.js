@@ -18,12 +18,19 @@ router.get("/all", function (req, res) {
 
 router.get("/nip/:nip", function (req, res) {
   client.getnip(req.params.nip, function (err, client) {
+  
     if (err) {
       res.status(404);
       res.json({
         error: "nie ma klienta o takim nip w bazie",
       });
-    } else {
+    } else if (!client){
+      res.json({
+        error: "nie ma klienta o takim nip w bazie",
+      });
+      
+    }else{
+      
       res.json(client);
     }
   });

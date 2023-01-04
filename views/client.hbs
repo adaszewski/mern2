@@ -36,7 +36,7 @@
      <td> 
 {{#each contacts}} w dniu{{dateFormat data_kontaktu "YYYY-MM-DD"}} forma:  {{forma_kontaktu}}  notatka: {{notatka}}<br>  {{/each}}
    </td>
-  <td> {{#each files}}  {{filename}} {{desc}} {{/each}}</td>
+  <td> {{#each files}}  {{filename}} {{desc}} <Button > pobierz</Button>{{/each}} </td>
    <td> <a href="/client/{{_id}}"> modyfikuj </a>
     <a href="/client/del/{{_id}}"> usuń  </a> </td>
     <td> <a href="/contact/add/{{_id}}"> dodaj zdarzenie </a> <a href="/file/add/{{_id}}">  dodaj plik </a> 

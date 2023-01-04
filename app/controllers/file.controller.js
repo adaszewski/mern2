@@ -12,7 +12,7 @@ function filesTable(cb) {
         
       } else {
         cb(null, items);
-        console.log(items);
+        // console.log(items);
         
       }
     });
