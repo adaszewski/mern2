@@ -1,0 +1,26 @@
+
+<h2> domy opieki </h2>
+
+  <table style="width:95%">
+<tr>
+    <th style="width: 10%">nazwa</th>
+    <th style="width: 10%">poczta</th>
+     <th style="width: 10%">lokalizacja</th>
+     <th style="width: 10%">numer lokalu</th>
+ <th style="width: 10%">liczba miejsc</th>
+   
+    
+</tr>
+    
+  
+  
+   {{#each houses}}
+    <td>{{nazwa}} </td>
+    <td>{{poczta}}</td>
+    <td>{{lokalizacja}}</td>
+    <td>{{nr_lokalu}}</td>
+    <td> {{liczba_miejsc}}</td> 
+ 
+
+        </tr>
+      {{/each}}

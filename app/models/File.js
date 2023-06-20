@@ -22,6 +22,7 @@ const schema = new mongoose.Schema({
     data: Buffer,
     contentType: String
   },
+  filePath: String
 
 });
 

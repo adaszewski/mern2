@@ -14,31 +14,22 @@
 <button> <a href="/client/{{_id}}"> modyfikuj </a></button>
 <hr>
 <h4> Ostatnie kontakty z klientem</h4>
-{{!-- <table style="width:70%">
-    <tr>
-        <th style="width: 20%">data</th>
-        <th style="width: 10%">forma kontaktu</th>
-        <th style="width: 50%">notatka</th>
-        <th style="width: 20%">data następnego kontaktu</th>
-    </tr> --}}
-
-
 
     {{#each contacts}} w dniu{{dateFormat data_kontaktu "YYYY-MM-DD"}} forma: {{forma_kontaktu}} notatka: {{notatka}}
     <br> {{/each}}
     <hr>
 
-    {{!--
-    <td>{{dateFormat data_kontaktu "YYYY-MM-DD"}} </td>
-    <td> {{forma_kontaktu}}</td>
-    <td> {{notatka}} </td>
-    <td>{{dateFormat data_kontaktu "YYYY-MM-DD"}} </td>
-    --}}
-
+   
 
     <button><a href="/contact/add/{{_id}}"> dodaj zdarzenie </a> </button>
     <hr>
     <h4> Pliki klienta</h4>
-       <p> {{#each files}} nazwa:{{filename}} {{desc}} {{/each}}	</p>		
+       <ul>
+         {{#each files}} 
+            <li><a href="{{filePath}} ">{{filename}} </a></li>
+            
+         {{/each}}
+         
+      </ul>
     <br> 
    <hr>

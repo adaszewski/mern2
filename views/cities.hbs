@@ -1,0 +1,37 @@
+
+
+<h1> Klienci firmy </h1>
+
+     {{!-- <form style="width:50%" method="GET" action="/client/nip/{{nip}}">
+     <h4> Wyszukaj klienta</h4>
+  <label>nip</label><input name="nip"/> <button> Znajdź </button>
+  </form>
+  <form style="width:50%" method="GET" action="/client/miasto/{{miasto}}">
+     <label> miasto </label><input name="miasto"/> <button> Znajdź </button><br />
+</form>   --}}
+
+
+  <table style="width:95%">
+<tr>
+    <th style="width: 10%">wojewodztwo</th>
+    <th style="width: 10%">powiat</th>
+    <th style="width: 20%">miasto</th>
+    <th style="width: 10%">kod_pocztowy</th>
+    <th style="width: 30%">ulica</th>
+    <th style="width: 10%">typ_ulica</th>
+   
+    
+</tr>
+    
+  
+  
+   {{#each cities}}
+    <td>{{wojewodztwo}} </td>
+    <td> {{powiat}}</td> 
+     <td>{{miasto}}</td>
+    <td>{{kod_pocztowy}}</td>
+    <td>{{ulica}}</td>
+    <td>{{typ_ulica}}</td>
+
+        </tr>
+      {{/each}}

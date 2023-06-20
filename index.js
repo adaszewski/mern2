@@ -21,16 +21,23 @@ const client = require("./app/controllers/client.controller");
 const contact = require("./app/controllers/contact.controller");
 const users = require("./app/controllers/users.controller");
 const file=require("./app/controllers/file.controller")
+const cities=require("./app/controllers/cities.controller")
+const house=require("./app/controllers/house.controller")
+
 
 const clientRouter = require("./app/routes/clientRouter");
 const contactRouter = require("./app/routes/contactRouter");
 const usersRouter = require("./app/routes/usersRouter");
 const fileRouter = require("./app/routes/fileRouter");
+const citiesRouter = require("./app/routes/citiesRouter");
+const houseRouter = require("./app/routes/houseRouter");
 
 
 const clientApiRouter = require("./app/api/clientApi");
 const contactApiRouter = require("./app/api/contactApi");
 const usersApiRouter = require("./app/api/usersApi");
+const citiesApiRouter = require("./app/api/citiesApi");
+const houseApiRouter = require("./app/api/houseApi");
 const auth = require("./app/middlewares/auth");
 
 const storage = multer.diskStorage({
@@ -38,7 +45,7 @@ const storage = multer.diskStorage({
     cb(null, 'uploads')
   },
   filename: (req, file, cb) => {
-    cb(null, file.fieldname + '-' + Date.now())
+    cb(null, file.originalname)
   }
 });
 
@@ -50,16 +57,21 @@ app.use(methodOverride('_method'));
 app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static("public"));
+app.use(express.static("uploads"));
+
 
 
 app.use("/client", clientRouter);
 app.use("/contact", contactRouter);
 app.use("/users", usersRouter);
-app.use("/file", fileRouter)
+app.use("/file", fileRouter);
+app.use("/cities", citiesRouter);
+app.use("/house", houseRouter);
 app.use("/api/client", clientApiRouter);
 app.use("/api/contact", contactApiRouter);
 app.use("/api/users", usersApiRouter);
-
+app.use("/api/cities", citiesApiRouter);
+app.use("/api/house", houseApiRouter);
 
 app.set("view engine", "hbs");
 
@@ -92,8 +104,9 @@ app.post("/file/add/:clientId", upload.single('file'), (req, res, next) => {
     client: req.params.clientId,
     filename: req.body.filename,
     desc: req.body.desc,
+    filePath: req.file.originalname,
     file: {
-      data: fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename)),
+      data: fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.originalname)),
       contentType: 'file'
     }
   }
@@ -140,7 +153,8 @@ app.get("/", (req, res) => {
     content4: "http://127.0.0.1:5000/users",
     content5: "http://127.0.0.1:5000/login",
     content6: "http://127.0.0.1:5000/users/add",
-    // content7: "http://127.0.0.1:5000/file/add"
+    content7: "http://127.0.0.1:5000/cities",
+    content8: "http://127.0.0.1:5000/house"
   });
 });
 

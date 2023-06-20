@@ -16,6 +16,27 @@ router.get("/all", function (req, res) {
   });
 });
 
+router.get("/niptable", function (req, res) {
+  client.nipTable( function (err, nipTable) {
+    if (err) res.send(err);
+    res.json(nipTable);
+  });
+});
+
+router.get("/citytable", function (req, res) {
+  client.cityTable( function (err, cityTable) {
+    if (err) res.send(err);
+    res.json(cityTable);
+  });
+});
+
+router.get("/usertable", function (req, res) {
+  client.userTable( function (err, userTable) {
+    if (err) res.send(err);
+    res.json(userTable);
+  });
+});
+
 router.get("/nip/:nip", function (req, res) {
   client.getnip(req.params.nip, function (err, client) {
   
@@ -42,6 +63,19 @@ router.get("/miasto/:miasto", function (req, res) {
       res.status(404);
       res.json({
         error: "nie ma klienta w tym mieście",
+      });
+    } else {
+      res.json(client);
+    }
+  });
+});
+
+router.get("/opiekun/:opiekun", function (req, res) {
+  client.getopiekun(req.params.opiekun, function (err, client) {
+    if (err) {
+      res.status(404);
+      res.json({
+        error: "ten opiekun nie ma klientów",
       });
     } else {
       res.json(client);

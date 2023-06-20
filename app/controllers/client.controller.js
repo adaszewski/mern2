@@ -1,12 +1,12 @@
 const Client = require("../models/Client");
-const File= require("../models/File")
+const File = require("../models/File");
 const moment = require("moment");
 
 function clientTable(cb) {
-  Client.find( )
+  Client.find()
     .populate("contacts")
     .populate("files")
-    .sort({nip: 1})
+    .sort({ nip: 1 })
     .lean()
     .exec(function (err, clients) {
       if (err) {
@@ -17,10 +17,52 @@ function clientTable(cb) {
     });
 }
 
+function clientTableNip(cb) {
+  Client.find()
+    .select("nip")
+    .lean()
+    .exec(function (err, clients) {
+      if (err) {
+        cb(err);
+      } else {
+        cb(null, clients);
+      }
+    });
+}
+
+function clientTableCity(cb) {
+  Client.find()
+    
+    
+    .select("adres.miasto")
+    // .distinct("adres.miasto")
+    .lean()
+    .exec(function (err, cities) {
+      if (err) {
+        cb(err);
+      } else {
+        cb(null, cities);
+      }
+    });
+}
+
+function clientTableUser(cb) {
+  Client.find()
+    .select("opiekun")
+    .lean()
+    .exec(function (err, user) {
+      if (err) {
+        cb(err);
+      } else {
+        cb(null, user);
+      }
+    });
+}
+
 function clientGetNip(nip, cb) {
-  Client.findOne({nip: nip})
-  
-    .populate({path:'contacts', options: {sort: { 'data_kontaktu': 1 }}})
+  Client.findOne({ nip: nip })
+
+    .populate({ path: "contacts", options: { sort: { data_kontaktu: 1 } } })
     .populate("files")
     .lean()
     .exec(function (err, client) {
@@ -35,8 +77,9 @@ function clientGetNip(nip, cb) {
 }
 
 function clientGetMiasto(miasto, cb) {
-  Client.find({"adres.miasto": miasto})
+  Client.find({ "adres.miasto": miasto })
     .populate("contacts")
+    .populate("files")
     .lean()
     .exec(function (err, clients) {
       if (err) {
@@ -48,16 +91,31 @@ function clientGetMiasto(miasto, cb) {
     });
 }
 
+function clientGetOpiekun(opiekun, cb) {
+  Client.find({ "opiekun": opiekun })
+    .populate("contacts")
+    .populate("files")
+    .lean()
+    .exec(function (err, clients) {
+      if (err) {
+        cb(err);
+      } else {
+        cb(null, clients);
+      }
+      // console.log(client)
+    });
+}
+
+
 function clientGet(_id, cb) {
-  Client.findOne({_id})
+  Client.findOne({ _id })
     .populate("contacts", "file")
 
     .lean()
     .exec(function (err, client) {
-          cb(null, client);
-          // console.log(client);
-      }
-    );
+      cb(null, client);
+      // console.log(client);
+    });
 }
 
 function clientAdd(data, cb) {
@@ -96,7 +154,11 @@ module.exports = {
   get: clientGet,
   getnip: clientGetNip,
   getmiasto: clientGetMiasto,
+  getopiekun: clientGetOpiekun,
   add: clientAdd,
   update: clientUpdate,
   delete: clientDelete,
+  nipTable: clientTableNip,
+  cityTable: clientTableCity,
+  userTable: clientTableUser,
 };
